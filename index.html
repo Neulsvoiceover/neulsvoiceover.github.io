@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Emmanuel Alao Voice</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #8B6914;
+    --black: #080808;
+    --black-soft: #111111;
+    --black-card: #141414;
+    --white: #F5F0E8;
+    --white-dim: #9E9585;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  section { position: relative; z-index: 1; }
+
+  /* ── GOLD LINE ── */
+  .gold-line {
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 2rem;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 6vw;
+    background: rgba(8,8,8,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--white-dim);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10rem 6vw 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--black));
+    z-index: 2;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+
+  .hero-name span {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-tagline {
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    margin-top: 1.5rem;
+    max-width: 520px;
+    line-height: 1.9;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+
+  .hero-cta {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+
+  .btn-primary {
+    padding: 1rem 2.5rem;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    padding: 1rem 2.5rem;
+    background: transparent;
+    color: var(--gold);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--gold);
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+  }
+
+  .btn-outline:hover {
+    background: rgba(201,168,76,0.08);
+    transform: translateY(-2px);
+  }
+
+  /* ── SECTION BASE ── */
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 7rem 6vw;
+    text-align: center;
+  }
+
+  .section-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-sub {
+    font-size: 0.82rem;
+    color: var(--white-dim);
+    line-height: 2;
+    max-width: 580px;
+    margin: 0 auto 3.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── DEMO REEL ── */
+  #demo {
+    background: var(--black-soft);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .demo-player {
+    background: var(--black-card);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 2.5rem 3rem;
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .demo-player::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 2rem; right: 2rem;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .demo-track {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .play-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    font-size: 1rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+  }
+
+  .play-btn:hover { background: rgba(201,168,76,0.12); }
+
+  .track-info { text-align: left; flex: 1; }
+  .track-name {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .track-type {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 2px;
+    background: rgba(201,168,76,0.15);
+    position: relative;
+    cursor: pointer;
+  }
+
+  .progress-fill {
+    width: 35%;
+    height: 100%;
+    background: var(--gold);
+    position: relative;
+    transition: width 0.1s;
+  }
+
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: -3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .demo-note {
+    margin-top: 1.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--white-dim);
+    text-transform: uppercase;
+  }
+
+  /* ── SERVICES ── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.1);
+    margin-top: 1rem;
+  }
+
+  .service-card {
+    background: var(--black);
+    padding: 2.5rem 2rem;
+    text-align: left;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+
+  .service-card:hover::after { width: 100%; }
+  .service-card:hover { background: var(--black-card); }
+
+  .service-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.03em;
+  }
+
+  .service-desc {
+    font-size: 0.75rem;
+    color: var(--white-dim);
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--black-soft);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    text-align: left;
+    margin-top: 1rem;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--black-card);
+    border: 1px solid rgba(201,168,76,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-frame::before {
+    content: '';
+    position: absolute;
+    top: 12px; left: 12px; right: -12px; bottom: -12px;
+    border: 1px solid rgba(201,168,76,0.15);
+    z-index: -1;
+  }
+
+  .about-initials {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    font-weight: 300;
+    color: rgba(201,168,76,0.15);
+    letter-spacing: 0.1em;
+  }
+
+  .about-placeholder {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: rgba(201,168,76,0.3);
+    text-transform: uppercase;
+  }
+
+  .about-content .section-label { text-align: left; }
+  .about-content .section-title { text-align: left; }
+
+  .about-body {
+    font-size: 0.82rem;
+    color: var(--white-dim);
+    line-height: 2.1;
+    letter-spacing: 0.03em;
+    margin-bottom: 2rem;
+  }
+
+  .about-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--white-dim);
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .testimonial-card {
+    background: var(--black-card);
+    border: 1px solid rgba(201,168,76,0.1);
+    padding: 2.5rem 2rem;
+    text-align: left;
+    position: relative;
+  }
+
+  .testimonial-card::before {
+    content: '\201C';
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    color: rgba(201,168,76,0.12);
+    line-height: 1;
+  }
+
+  .testimonial-text {
+    font-size: 0.8rem;
+    color: var(--white-dim);
+    line-height: 2;
+    letter-spacing: 0.03em;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .testimonial-role {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--white-dim);
+    margin-top: 0.2rem;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    text-align: left;
+    align-items: start;
+  }
+
+  .contact-info .section-label,
+  .contact-info .section-title { text-align: left; }
+
+  .contact-body {
+    font-size: 0.82rem;
+    color: var(--white-dim);
+    line-height: 2;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: var(--white-dim);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+  }
+
+  .contact-link:hover { color: var(--gold); }
+
+  .contact-link-icon {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(201,168,76,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .form-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+  }
+
+  .form-input, .form-textarea {
+    background: var(--black-card);
+    border: 1px solid rgba(201,168,76,0.15);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    padding: 0.9rem 1.2rem;
+    outline: none;
+    transition: border-color 0.3s;
+    resize: none;
+  }
+
+  .form-input:focus, .form-textarea:focus {
+    border-color: var(--gold);
+  }
+
+  .form-input::placeholder, .form-textarea::placeholder {
+    color: rgba(158,149,133,0.4);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 2.5rem 6vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .footer-copy {
+    font-size: 0.65rem;
+    color: var(--white-dim);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    opacity: 0.3;
+    margin: 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-visual { display: none; }
+    .about-stats { gap: 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Emmanuel Alao Voice</div>
+  <ul class="nav-links">
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <p class="hero-eyebrow">Voice Over Artist &nbsp;·&nbsp; Event Host &nbsp;·&nbsp; Nigeria &amp; Beyond</p>
+  <h1 class="hero-name">Emmanuel<br><span>Alao</span></h1>
+  <p class="hero-tagline">The voice your brand has been waiting for — commanding, warm, and unforgettable</p>
+  <div class="hero-cta">
+    <a href="#demo" class="btn-primary">Hear the Voice</a>
+    <a href="#contact" class="btn-outline">Book a Session</a>
+  </div>
+</section>
+
+<!-- DEMO REEL -->
+<section id="demo">
+  <div class="section-inner">
+    <p class="section-label reveal">Demo Reel</p>
+    <span class="gold-line reveal"></span>
+    <h2 class="section-title reveal">Listen Before You Decide.<br>You Won't Regret It.</h2>
+    <p class="section-sub reveal">From high-energy commercials to smooth corporate narration — one voice, every register.</p>
+
+    <div class="demo-player reveal">
+      <div class="demo-track">
+        <button class="play-btn">▶</button>
+        <div class="track-info">
+          <div class="track-name">Commercial Demo — Emmanuel Alao Voice</div>
+          <div class="track-type">Broadcast · Corporate · Promo</div>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+      <p class="demo-note">Replace this player with your actual SoundCloud or audio embed</p>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <p class="section-label reveal">What I Offer</p>
+    <span class="gold-line reveal"></span>
+    <h2 class="section-title reveal">Every Format.<br>Every Audience.</h2>
+    <p class="section-sub reveal">Whether you need authority, warmth, energy, or gravitas — the range is here.</p>
+
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <span class="service-icon">📢</span>
+        <div class="service-name">Commercial Voice Over</div>
+        <p class="service-desc">TV, radio, and digital ads that stop the scroll and move the buyer. High-energy or refined — delivered to brief.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎙️</span>
+        <div class="service-name">Event Hosting & Promo</div>
+        <p class="service-desc">Conferences, concerts, corporate events. The voice that commands the room before anyone walks in.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📖</span>
+        <div class="service-name">Audiobooks & Narration</div>
+        <p class="service-desc">Long-form storytelling with character depth and sustained energy. Your words, given life.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏢</span>
+        <div class="service-name">Corporate & E-Learning</div>
+        <p class="service-desc">Training modules, explainers, and brand videos that inform without boring. Clear. Credible. Professional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-frame">
+          <div class="about-initials">EA</div>
+          <div class="about-placeholder">Insert your photo here</div>
+        </div>
+      </div>
+      <div class="about-content">
+        <p class="section-label reveal">About</p>
+        <h2 class="section-title reveal">A Voice Built for<br>the Highest Stakes</h2>
+        <p class="about-body reveal">
+          I'm Emmanuel Alao — voice over artist, event host, and creative professional based in Nigeria. My voice carries depth, authority, and energy that clients across industries have relied on to elevate their brands.<br><br>
+          From broadcast commercials to audiobooks, from live event stages to corporate boardrooms — I deliver with precision, consistency, and a standard that international clients expect.
+        </p>
+        <a href="#contact" class="btn-primary reveal" style="display:inline-block;">Work With Me</a>
+        <div class="about-stats reveal">
+          <div>
+            <div class="stat-num">5+</div>
+            <div class="stat-label">Years Active</div>
+          </div>
+          <div>
+            <div class="stat-num">100+</div>
+            <div class="stat-label">Projects Delivered</div>
+          </div>
+          <div>
+            <div class="stat-num">2</div>
+            <div class="stat-label">Continents Served</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <p class="section-label reveal">Client Words</p>
+    <span class="gold-line reveal"></span>
+    <h2 class="section-title reveal">They Hired the Voice.<br>They Came Back for More.</h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text">"Emmanuel's voice gave our campaign an authority we couldn't achieve any other way. Clients noticed immediately. We've used him three times now."</p>
+        <div class="testimonial-author">Client Name</div>
+        <div class="testimonial-role">Marketing Director — Replace with real testimonial</div>
+      </div>
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text">"The delivery was clean, the turnaround was fast, and the quality was broadcast-ready on the first take. Exactly what we needed."</p>
+        <div class="testimonial-author">Client Name</div>
+        <div class="testimonial-role">Event Producer — Replace with real testimonial</div>
+      </div>
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text">"Deep, smooth, and professional. Our audiobook listeners said his narration was the best part of the release. High praise."</p>
+        <div class="testimonial-author">Client Name</div>
+        <div class="testimonial-role">Publisher — Replace with real testimonial</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p class="section-label reveal">Contact</p>
+        <h2 class="section-title reveal">Let's Build<br>Something Great.</h2>
+        <p class="contact-body reveal">
+          Ready to elevate your next project? Reach out with your brief, timeline, and budget. Response within 24 hours.
+        </p>
+        <div class="contact-links reveal">
+          <a href="mailto:your@email.com" class="contact-link">
+            <div class="contact-link-icon">✉</div>
+            your@email.com
+          </a>
+          <a href="https://wa.me/234XXXXXXXXXX" class="contact-link" target="_blank">
+            <div class="contact-link-icon">📱</div>
+            WhatsApp — +234 XXX XXX XXXX
+          </a>
+          <a href="https://instagram.com/yourhandle" class="contact-link" target="_blank">
+            <div class="contact-link-icon">◈</div>
+            @yourinstagramhandle
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input class="form-input" type="text" placeholder="Full name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Project Type</label>
+          <input class="form-input" type="text" placeholder="Commercial / Audiobook / Event / Other" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" rows="5" placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%; margin-top:0.5rem;">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Emmanuel Alao Voice</div>
+  <div class="footer-copy">© 2026 Emmanuel Alao Voice. All rights reserved.</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Play button toggle
+  const playBtn = document.querySelector('.play-btn');
+  let playing = false;
+  playBtn.addEventListener('click', () => {
+    playing = !playing;
+    playBtn.textContent = playing ? '⏸' : '▶';
+  });
+</script>
+</body>
+</html>
